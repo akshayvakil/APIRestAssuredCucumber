@@ -13,4 +13,5 @@ Scenario Outline: Verify if place is successfully added using AddPlaceAPI.
   Examples:
   |name    |language|
   |AAAHouse|English |
+  |BBBHouse|French  |
  
