@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.given;
 //import static org.testng.Assert.assertEquals;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.*;
@@ -36,7 +37,7 @@ public class StepDefinationFile extends Utils{
 	
 
 @Given("Add place payoad")
-public void add_place_payoad() throws FileNotFoundException {
+public void add_place_payoad() throws IOException {
 	
 
 
