@@ -2,7 +2,7 @@ Feature: Validating place's API
 
 Scenario Outline: Verify if place is successfully added using AddPlaceAPI.
 
-  Given Add place payoad <"name"> <"language">
+  Given Add place payoad "<name>" "<language>"
   # before enum class line was like When user calls "AddPlaceAPI" with post http request1
   When user calls "AddPlaceAPI" with "POST" http request1
   # Enums class has method AddPlaceAPI, this configuration is done in stepdefination using enum constructor "AddPlaceAPI" keyword should match.
@@ -12,9 +12,10 @@ Scenario Outline: Verify if place is successfully added using AddPlaceAPI.
   #These are exact values coming from api response which we are validating
   And "scope" in response body1 is "APP" 
   #These are exact values coming from api response which we are validating
+  And verify created place id to "<name>" using "GetPlaceAPI"
   
   Examples:
   |name    |language|
   |AAAHouse|English |
-  |BBBHouse|French  |
+  # |BBBHouse|French  | commented in chapter 87 for as dataset is learned no need of datasets
  

@@ -11,6 +11,8 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 public class Utils {
@@ -56,6 +58,15 @@ public class Utils {
 		properties.load(propfile);
 		return properties.getProperty(key);
 		
+		
+	}
+	
+	public String getValueofKeyfromJson(Response response, String key)
+	{
+		String responsString = response.asString();
+		JsonPath responseJson = new JsonPath(responsString);
+		String valuefromKey=responseJson.get(key).toString();
+		return valuefromKey;
 		
 	}
 
