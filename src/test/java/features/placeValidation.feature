@@ -1,5 +1,7 @@
 Feature: Validating place's API
 
+@AddPlace
+# Create tags to run only selected Scenarios
 Scenario Outline: Verify if place is successfully added using AddPlaceAPI.
 
   Given Add place payoad "<name>" "<language>"
@@ -18,7 +20,8 @@ Scenario Outline: Verify if place is successfully added using AddPlaceAPI.
   |name    |language|
   |BBBHouse|English |
   # |BBBHouse|French  | commented in chapter 87 for as dataset is learned no need of datasets
-  
+
+@DeletePlace  
 Scenario: Verify delete place functionality
 Given DeletePlace Payload 
 When user calls "DeletePlaceAPI" with "POST" http request1

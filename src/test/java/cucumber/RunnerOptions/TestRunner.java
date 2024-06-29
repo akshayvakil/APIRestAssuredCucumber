@@ -6,10 +6,21 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 
-//cucumber option annotation (path of package in which features file is present, package where step definition is present)
+/**
+ * 
+ * maven commads to run with TAGs
+ * Before 5.0.0 mvn test -Dcucumber.options="--tags @AddPlace"'
+ * After  5.0.0 mvn test -Dcucumber.filter.tags="@AddPlace"
+ * @author AKSHAY
+ *
+ */
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features="src/test/java/features",glue={"stepDefinition"})
+//cucumber option annotation 
+//              (path of package in which features file is present, packageName where step definition is present)
+@CucumberOptions(features="src/test/java/features",glue="stepDefinition",tags="@DeletePlace")
+// Remove TAG to run both scenarios from feature file
+//to add multuple tags follow --> tags="@AddPlace or @DeletePlace"
 public class TestRunner {
 
 }

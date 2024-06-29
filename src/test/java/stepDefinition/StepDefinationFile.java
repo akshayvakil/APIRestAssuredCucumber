@@ -89,14 +89,15 @@ public class StepDefinationFile extends Utils {
 	@Then("verify created place id to {string} using {string}")
 	
 	public void verify_created_place_id_to_using(String expectedName, String resource) throws IOException {
-	    // Write code here that turns the phrase above into concrete actions
+	    //resource means =GetPlaceAPI from enum
+		// Write code here that turns the phrase above into concrete actions
 	   //get aPI call before that prepare request spec similar to add place in Given method line 36
 		CreatedplaceID=getValueofKeyfromJson(response, "place_id");
 		request = given().spec(reqspecfication()).queryParam("place_id", CreatedplaceID);
 		//Note:1 Now we need to call getAPI service 
 		//We can call it using methond in when ,
 		user_calls_with_http_request1(resource,"GET");
-		String CreatedNamethorughservice=getValueofKeyfromJson(response, "name");
+		String CreatedNamethorughservice=getValueofKeyfromJson(response, "name"); //name coming from feature file
 		//System.out.println("value coming from response is -> "+CreatedNamethorughservice);
 		assertEquals(CreatedNamethorughservice,expectedName);
 	}
