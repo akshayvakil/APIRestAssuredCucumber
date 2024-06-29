@@ -16,6 +16,14 @@ Scenario Outline: Verify if place is successfully added using AddPlaceAPI.
   
   Examples:
   |name    |language|
-  |AAAHouse|English |
+  |BBBHouse|English |
   # |BBBHouse|French  | commented in chapter 87 for as dataset is learned no need of datasets
+  
+Scenario: Verify delete place functionality
+Given DeletePlace Payload 
+When user calls "DeletePlaceAPI" with "POST" http request1
+Then api call got success code1 200
+And "status" in response body1 is "OK" 
+
+
  

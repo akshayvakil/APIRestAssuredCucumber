@@ -32,5 +32,12 @@ public class testDataBuildDataDriven {
 		return addPlacejson;
 
 	}
+	
+	public String deletePayloadjson(String placeID)
+	{
+		return "  {\r\n"
+				+ "  \"place_id\": \""+placeID+"\"\r\n"
+				+ "  }";
+	}
 
 }

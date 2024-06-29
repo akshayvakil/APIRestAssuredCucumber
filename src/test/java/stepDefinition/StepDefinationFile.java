@@ -28,15 +28,15 @@ public class StepDefinationFile extends Utils {
 	RequestSpecification request;
 	ResponseSpecification responseBuilder;
 	Response response;
-	testDataBuildDataDriven addplacepayload2 = new testDataBuildDataDriven();
-	String CreatedplaceID;
+	testDataBuildDataDriven payloadjsondata = new testDataBuildDataDriven();
+	static String CreatedplaceID; // If this varaible is not made static it can NOT be used in multiple variables nullpointer exception will be received
 	JsonPath responseJson;
 
 	//@Given("Add place payoad <{string}> <{string}>")
 	@Given("Add place payoad {string} {string}")
 	public void add_place_payoad(String name, String language) throws IOException {
 
-		request = given().spec(reqspecfication()).body(addplacepayload2.addPlacePayload(name, language));
+		request = given().spec(reqspecfication()).body(payloadjsondata.addPlacePayload(name, language));
 
 		// throw new io.cucumber.java.PendingException();
 	}
@@ -51,13 +51,13 @@ public class StepDefinationFile extends Utils {
 		/// request.when().post("/maps/api/place/add/json")"
 
 		APIResourcesWithEnum enumReferenceVaraibleResource = APIResourcesWithEnum.valueOf(resource);
-		String getAPIresource = enumReferenceVaraibleResource.getResourcefromEnumClass();
+		String getAPIresourceFromEnum = enumReferenceVaraibleResource.getResourcefromEnumClass();
 		
 		//Without Enum response = request.when().post("/maps/api/place/add/json").then().spec(responseBuilder).extract().response();
 	if(httpReqMethodType.equalsIgnoreCase("POST"))
-		response = request.when().post(getAPIresource);
+		response = request.when().post(getAPIresourceFromEnum);
 	else if(httpReqMethodType.equalsIgnoreCase("GET"))
-		response = request.when().get(getAPIresource);
+		response = request.when().get(getAPIresourceFromEnum);
 		
 		// throw new io.cucumber.java.PendingException();
 	}
@@ -97,8 +97,18 @@ public class StepDefinationFile extends Utils {
 		//We can call it using methond in when ,
 		user_calls_with_http_request1(resource,"GET");
 		String CreatedNamethorughservice=getValueofKeyfromJson(response, "name");
-		System.out.println("value is "+CreatedNamethorughservice);
+		//System.out.println("value coming from response is -> "+CreatedNamethorughservice);
 		assertEquals(CreatedNamethorughservice,expectedName);
+	}
+	
+	@Given("DeletePlace Payload")
+	public void delete_place_payload() throws IOException {
+		//Notes: Spec Builder is already used in Given MEthod we just need to change body
+		// one way to use direct json with escape sequence as follows
+		//https://www.freeformatter.com/json-escape.html#before-output
+		//request = given().spec(reqspecfication()).body(  "{\r\n  \"place_id\": \"9a07e54cf8970b87b25d46a5e3648c5d\"\r\n  }");
+		request = given().spec(reqspecfication()).body(payloadjsondata.deletePayloadjson(CreatedplaceID));
+		
 	}
 
 }

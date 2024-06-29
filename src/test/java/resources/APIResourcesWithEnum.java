@@ -21,7 +21,7 @@ public enum APIResourcesWithEnum {
 	}
 
 	public String getResourcefromEnumClass() {
-
+System.out.println(resource);
 		return resource;
 	}
 }
